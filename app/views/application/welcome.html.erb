@@ -1,1 +1,11 @@
-<h1>Welcome to RubySpace</h1>
+<div class="container">
+<h1>Welcome to RubySpace</h1></br>
+
+<h2>The place where your social media is combined all into one place! Please signup or Log in</h2>
+
+
+<% if user_signed_in? %>
+    <h2><ul> Hello, <%= current_user.name if !current_user.nil? %> Welcome to RubySpace, The place where your social media is combined all into one place! Please sign in to</ul></h2>
+<% end %>
+</div>
+
