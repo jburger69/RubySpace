@@ -29,6 +29,8 @@ gem "hpricot"
 gem "ruby_parser"
 gem "dotenv-rails"
 gem 'pry'
+gem 'world-flags', github: 'kristianmandrup/world-flags', branch: 'master'
+gem 'bootstrap-sass'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
