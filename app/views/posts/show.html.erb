@@ -1,0 +1,16 @@
+<div class="container">
+<div class="card mb-3">
+<div class="card-body">
+<div class="d-flex justify-content-between">
+<h2><%= @post.content %></h2>
+<% if @post.image.attached? %>
+  <p>
+    <%= image_tag @post.image, style:'width:500px; height:500px; display: block' %>
+    <a class="nav-item nav-link btn btn-warning"<%= link_to "Edit", edit_post_path(@post) %></a>
+    <a class="nav-item nav-link btn btn-primary"<%= link_to "Back", posts_path(@post) %></a>
+  </p>
+<% end %>
+</div>
+</div>
+</div>
+</div>
