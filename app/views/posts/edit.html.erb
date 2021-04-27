@@ -1,0 +1,10 @@
+<%= form_for @post, :html => {:class => "form-horizontal center"} do |f| %>
+    <div class="form-group">
+    <%= f.label "Post Content" %>
+    <%= f.text_area :content, class: "form-control", placeholder: "What would you like to post about?" %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= f. submit class: 'btn btn-primary' %>
+    <a class="card-link"><%= button_to "Back", post_path(f), :method => "get", :class => 'btn btn-dark btn btn-primary' %>
+    </div>
+<% end %>
