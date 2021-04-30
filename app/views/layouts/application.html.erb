@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary justify-content-between">
+    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #FFFFFF;" justify-content-between">
         <a class="navbar-brand" <%= link_to "RubySpace", posts_path, method: :get %></a>
           <div class="navbar-nav">
               <a class="nav-item nav-link active" </a>
@@ -26,19 +26,6 @@
               <% else %>
                 <a class="nav-item nav-link" <%= link_to "Login", new_user_session_path, method: :get %></a>
                 <a class="nav-item nav-link" <%= link_to "Signup", new_user_registration_path, method: :get %></a>
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                <%= form_tag(search_page_path, :method => "get",   
-                  class: 'navbar-form navbar-left') do %>  
-                  <div class="input-group">  
-                    <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
-                    <div class="input-group-btn">  
-                    <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
-                  </div>  
-                </div>  
-                <% end %>
               <% end %>
             </div>
           </div>
