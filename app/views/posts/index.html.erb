@@ -1,39 +1,48 @@
-<div class="container">
 <h1>Hello <%= current_user.email %> </h1>
+<div class="container">
+    
 
 
-<%= form_for @post, :html => {:class => "form-horizontal center"} do |f| %>
-    <div class="form-group">
-    <%= f.label "Post Content" %>
-    <%= f.text_area :content, class: "form-control", placeholder: "What would you like to post about?" %>
-    <% if @post.image.attached? %>
-        <%= image_tag f.image %>
+    <%= form_for @post, :html => {:class => "form-horizontal center"} do |f| %>
+        <div class="form-group">
+                <div class="col-md-8">
+                <%= f.text_area :content, class: "form-control", placeholder: "What would you like to post about?" %>
+                <% if @post.image.attached? %>
+                    <%= image_tag f.image %>
+                <% end %>
+                <%= f.label :image %>
+                <%= f.file_field :image %>
+                <%= f. submit class: 'btn btn-primary' %>
+            </div>
+        </div>
     <% end %>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-    <%= f. submit class: 'btn btn-primary' %>
-    </div>
-<% end %>
 
 
-<div>
-<ul><% current_user.posts.each do |f| %>
-    <div class="card mb-3">
-    <div class="card-body">
-    <div class="d-flex justify-content-between">
-    <strong><%= f.content %></strong>
-    <%= f.image_url %>
-    <%= f.views %>
-    <% if f.image.attached? %>
-    <%= link_to image_tag f.image, style:'width:500px; height:500px; display: block' %>
-    <% end %>
-    <%= f.created_at %>
-    <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(f) %></a>
-    <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete" %></a>
+    <div>
+        <ul><% @posts.each do |f| %>
+            <div class="card-deck">
+                <div class="card align-items-center" style="width: 20rem;">
+                    <div class="card-block">
+                        <%= f.image_url %>
+                        <%= f.views %>
+                        <% if f.image.attached? %>
+                            <%= link_to post_path(f) do %>
+                                <%= image_tag f.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+                            <% end %>
+                        <% end %>
+                        <p class="card-text">
+                        <strong><h2>User: <%= f.user.name %></h2></strong>
+                        <strong><h3><%= f.content %></h3></strong>
+                        </p>
+                        <div class="card-footer">
+                            <%= index_date_format(f) %>
+                            <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(f) %></a>
+                            <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete" %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        </ul>
     </div>
-    </div>
-    </div>
-<% end %>
-</ul>
-</div>
 </div>
