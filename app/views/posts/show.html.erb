@@ -1,16 +1,28 @@
 <div class="container">
-<div class="card mb-3">
-<div class="card-body">
-<div class="d-flex justify-content-between">
-<h2><%= @post.content %></h2>
-<% if @post.image.attached? %>
-  <p>
-    <%= image_tag @post.image, style:'width:500px; height:500px; display: block' %>
-    <a class="nav-item nav-link btn btn-warning"<%= link_to "Edit", edit_post_path(@post) %></a>
-    <a class="nav-item nav-link btn btn-primary"<%= link_to "Back", posts_path(@post) %></a>
-  </p>
-<% end %>
-</div>
-</div>
-</div>
+  <div class="card-deck">
+    <div class="card align-items-center" style="width: 20rem;">
+      <div class="card-block">
+      <% if @post.image.attached? %>
+          <p>
+            <%= image_tag @post.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+          </p>
+        <% end %>
+        <h2>User: <%= @post.user.name %></h2>
+        <h2>Content: <%= @post.content %></h2>
+          <%= form_with(model: [@post, @comment]) do |f| %>
+            <%= f.hidden_field :author_id, value: current_user.id %>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <%= f.text_area :content %>
+            <%= f.submit :comment %>
+          <% end %>
+        <ul>
+            <%= render @comments %>
+        </ul>
+        <div class="card-footer">
+        <a class="nav-item nav-link btn btn-warning"<%= link_to "Edit", edit_post_path(@post) %></a>
+        <a class="nav-item nav-link btn btn-primary"<%= link_to "Back", posts_path(@post) %></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
