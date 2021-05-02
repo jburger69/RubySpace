@@ -17,7 +17,7 @@
 @import "bootstrap";
 
 body, html {
-    background-color: rgb(51, 54, 248);
+    background-color: rgb(201, 87, 87);
     font-family: Sans-Serif;
     line-height: 18px;
     height: 100%;
@@ -37,8 +37,10 @@ body, html {
 }
 
 .card-deck {
+   margin-top: 50px;
    margin-bottom: 50px;
 }
+
 
 .rounded-corners {
     border-radius: 20px;
