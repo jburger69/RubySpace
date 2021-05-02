@@ -1,0 +1,9 @@
+
+<%= form_with(model: [@post, @comment]) do |f| %>
+    <div class="form-group">
+    <%= f.hidden_field :author_id, value: current_user.id %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.text_area :content %>
+    <%= f.submit :comment %>
+    </div>
+<% end %>
