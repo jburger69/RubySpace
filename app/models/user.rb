@@ -14,6 +14,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+      devise :omniauthable, :omniauth_providers => [:facebook]
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.name = auth.info.name
+      user.password = Devise.friendly_token[0,20]
+    end 
+  end
+
+  def follow(user_id)
+    followed_users.create(followee_id: user_id)
+  end
+
+  def unfollow(user_id)
+    followed_users.find_by(followee_id: user_id).destroy
+  end
 
 
 end
