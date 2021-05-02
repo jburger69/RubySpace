@@ -1,10 +1,7 @@
+<%= render "errors" %>
+
+
 <div class="container">
-<%= form_for @post, :html => {:class => "form-horizontal center"} do |f| %>
-    <div class="form-group">
-    <%= f.text_area :content, class: "form-control", placeholder: "How are you feeling today?" %>
-    <%= f.text_field :image_url, class: "form-control", placeholder: "Image if you want" %>
-    <%= f. submit class: 'btn btn-primary' %>
-    </div>
-<% end %>
-<a class="nav-item nav-link btn btn-primary" <%= link_to "Back", posts_path, method: :get %></a>
+    <h1>Create a new post</h1>
+    <%= render "form" %>
 </div>
