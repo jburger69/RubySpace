@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-xs-8 col-xs-push-2">
+    <p id="notice"><%= notice %></p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row about">
+    <div class="col-xs-6 col-xs-push-2">
+      <div class="row">
+        <div class="col-xs-12 about">
+          <% if @user == current_user %>
+            <h2><strong>Welcome to your account</strong></h2><br>
+          <% else %>
+            <h2><strong>Welcome to <%= @user.name %>'s account</strong></h2><br>
+            <% end %>
+          <p>
+            <span style="font-size:30px">
+              <%= @user.email %><br>
+            </span>
+            <h3><strong>Posts: <%= @user.posts.count %></strong></h3><br>
+            <a href=<%= "/users/#{@user.id}/followers" %>>
+              <strong>Followers:</strong>
+              <%= "#{@user.followers.count}" %>
+            </a><br><br>
+            <a href=<%= "/users/#{@user.id}/following" %>>
+              <strong>Following:</strong>
+              <%= "#{@user.followees.count}" %><br>
+            </a><br>
+          </p>
+
+          <% if user_signed_in? %>
+            <div class="row">
+              <% if @user == current_user %>
+                <a class="nav-item nav-link btn btn-primary"<%= link_to 'New Post', '/posts' %>
+              <% elsif current_user_is_following(current_user.id, @user.id) %>
+                <a class="nav-item nav-link btn btn-danger"<%= link_to 'Unfollow', "/users/#{@user.id}/unfollow_user", method: :post %>
+              <% else %>
+                <a class="nav-item nav-link btn btn-primary"<%= link_to 'Follow', "/users/#{@user.id}/follow_user", method: :post %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-push-2">
+    <div class="row">
+        <% if @user.posts.count == 0 %>
+          <div class="col-xs-12 no-posts">
+            <% if @user.name.empty? %>
+              <h2><%=@user.name%> has no posts yet :(</h2>
+            <% else %>
+              <h2><%=@user.name%> has no posts yet :(</h2>
+            <% end %>
+          </div>
+        <% else %>
+          <% @user.posts.each do |post| %>
+            <div class="card-deck">
+                <div class="card align-items-center" style="width: 20rem;">
+                    <div class="card-block">
+                        <%= post.image_url %>
+                        <%= post.views %>
+                        <% if post.image.attached? %>
+                            <%= link_to post_path(post) do %>
+                                <%= image_tag post.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+                            <% end %>
+                        <% end %>
+                        <p class="card-text">
+                        <strong><h3><%= post.content %></h3></strong>
+                        </p>
+                        <div class="card-footer">
+                            <%= index_date_format(post) %>
+                            <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(post) %></a>
+                            <% if user_signed_in? && post.user == current_user %>
+                            <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(post), :method => "delete" %></a>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-4 grid-post">
+              <a href=<%= "/posts/#{post.id}" %>>
+              </a>
+            </div>
+          <% end %>
+        <% end %>
+      </tbody>
+    </div>
+  </div>
+</div>
