@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    
 
     def index
         @user = User.all
@@ -6,11 +7,14 @@ class PostsController < ApplicationController
         @post = Post.new
     end
 
+    def most_recent
+        @posts = Post.order(created_at: :desc)
+    end
+
     def show
         @post = Post.find(params[:id])
         @comments = @post.comments
         @comment = Comment.new
-
     end
 
     def new
@@ -27,7 +31,7 @@ class PostsController < ApplicationController
     end
 
     def edit
-        @post = current_user.posts.find(params[:id])
+        @post = Post.find(params[:id])
     end
 
     def update
