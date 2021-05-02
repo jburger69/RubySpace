@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     def create
         @post = Post.find(params[:post_id])
         @comment = @post.comments.new(comment_params)
-        if @comment.save
+        if @comment.valid?
+            @comment.save
             flash[:message] = "Comment successful"
             redirect_to post_path(@post)
         else
