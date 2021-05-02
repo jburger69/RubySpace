@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-xs-4 col-xs-push-4 post">
+    <h1>Listing Users</h1>
+
+    <div class="row list_wrapper">
+      <% @users.each do |user| %>
+        <a href= <%="/users/#{user.id}"%>>
+          <div class="row list-head">
+            <div class="col-xs-10 user-info">
+              <h3>
+                <strong> <%= user.email %> </strong><br>
+                <small><strong> <%= user.name %> </strong></small>
+              </h3>
+            </div>
+          </div>
+        </a>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-12 link">
+          <a href="/posts"><h3>Return to Home</h3></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 space">
+  </div>
+  <div class="col-xs-12 space">
+  </div>
+</div>
