@@ -1,0 +1,31 @@
+<h1> Most Recent </h1>
+
+<div>
+        <ul><% @posts.each do |f| %>
+            <div class="card-deck">
+                <div class="card align-items-center" style="width: 20rem;">
+                    <div class="card-block">
+                        <%= f.image_url %>
+                        <%= f.views %>
+                        <% if f.image.attached? %>
+                            <%= link_to post_path(f) do %>
+                                <%= image_tag f.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+                            <% end %>
+                        <% end %>
+                        <p class="card-text">
+                        <strong><h3><%= f.content %></h3></strong>
+                        </p>
+                        <div class="card-footer">
+                            <%= index_date_format(f) %>
+                            <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(f) %></a>
+                            <% if user_signed_in? && f.user == current_user %>
+                            <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete", data: { confirm: 'Are you sure?' } %></a>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        </ul>
+    </div>
+</div>
