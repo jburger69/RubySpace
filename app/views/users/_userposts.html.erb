@@ -1,0 +1,25 @@
+<% @user.posts.each do |post| %>
+    <div class="card-deck">
+        <div class="card align-items-center" style="width: 20rem;">
+            <div class="card-block">
+                <%= post.image_url %>
+                <%= post.views %>
+                <% if post.image.attached? %>
+                    <%= link_to post_path(post) do %>
+                        <%= image_tag post.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+                    <% end %>
+                <% end %>
+                <p class="card-text">
+                <strong><h3><%= post.content %></h3></strong>
+                </p>
+                <div class="card-footer">
+                    <%= index_date_format(post) %>
+                    <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(post) %></a>
+                    <% if user_signed_in? && post.user == current_user %>
+                    <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(post), :method => "delete" %></a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
