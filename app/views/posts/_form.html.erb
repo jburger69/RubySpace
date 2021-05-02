@@ -1,0 +1,13 @@
+<%= form_for @post, :html => {:class => "form-horizontal center"} do |f| %>
+    <div class="form-group">
+            <div class="col-md-8">
+            <%= f.text_area :content, class: "form-control", placeholder: "What would you like to post about?" %>
+            <% if @post.image.attached? %>
+                <%= image_tag @post.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+            <% end %>
+            <%= f.label :image %>
+            <%= f.file_field :image %>
+            <%= f. submit class: 'btn btn-primary' %>
+        </div>
+    </div>
+<% end %>
