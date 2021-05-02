@@ -1,21 +1,11 @@
-<h1>Hello <%= current_user.email %> </h1>
+
+<h1>Welcome to RubySpace</h1>
+<h4>Below is a feed of all user's posts, Try making your own post!</h4><br>
 <div class="container">
     
 
 
-    <%= form_for @post, :html => {:class => "form-horizontal center"} do |f| %>
-        <div class="form-group">
-                <div class="col-md-8">
-                <%= f.text_area :content, class: "form-control", placeholder: "What would you like to post about?" %>
-                <% if @post.image.attached? %>
-                    <%= image_tag f.image %>
-                <% end %>
-                <%= f.label :image %>
-                <%= f.file_field :image %>
-                <%= f. submit class: 'btn btn-primary' %>
-            </div>
-        </div>
-    <% end %>
+    <%= render "form" %>
 
 
     <div>
@@ -31,13 +21,14 @@
                             <% end %>
                         <% end %>
                         <p class="card-text">
-                        <strong><h2>User: <%= f.user.name %></h2></strong>
                         <strong><h3><%= f.content %></h3></strong>
                         </p>
                         <div class="card-footer">
                             <%= index_date_format(f) %>
                             <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(f) %></a>
-                            <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete" %></a>
+                            <% if user_signed_in? && f.user == current_user %>
+                            <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete", data: { confirm: 'Are you sure?' } %></a>
+                            <% end %>
                         </div>
                     </div>
                 </div>
