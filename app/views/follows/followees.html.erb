@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-4 col-xs-push-4 post">
+    <h1>Listing @<%= @user.email %>'s Following</h1>
+    <div class="row list_wrapper">
+      <% @followees.each do |user| %>
+        <a href= <%="/users/#{user.id}"%>>
+          <div class="row list-head">
+            <div class="col-xs-10 user-info">
+              <h3>
+                <strong> <%= user.email %> </strong><br>
+                <small><strong> <%= user.name %> </strong></small>
+              </h3>
+            </div>
+          </div>
+        </a>
+      <% end %>
+
+      <div class="row">
+        <div class="col-xs-12 link">
+          <a href= <%= "/users/#{@user.id}" %>><h3><%= "Back to Account" %></h3></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 space">
+  </div>
+  <div class="col-xs-12 space">
+  </div>
+</div>
