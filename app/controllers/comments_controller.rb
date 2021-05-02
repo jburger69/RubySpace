@@ -1,14 +1,26 @@
 class CommentsController < ApplicationController
 
+    def new
+        
+    end
+
     def create
-        @post = current_user.posts.find_by_id(params[:post_id])
-        @comment = @post.comments.build(comment_params)
+        @post = Post.find(params[:post_id])
+        @comment = @post.comments.new(comment_params)
         if @comment.save
             flash[:message] = "Comment successful"
             redirect_to post_path(@post)
         else
+            render :new
             flash[:message] = "Sorry that didnt work"
         end
+    end
+
+    def destroy
+        @post = Post.find(params[:post_id])
+        @comment = @post.comments.find(params[:id])
+        @comment.destroy
+        redirect_to post_path(@post)
     end
 
     private
