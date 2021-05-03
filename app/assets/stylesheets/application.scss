@@ -17,12 +17,16 @@
 @import "bootstrap";
 
 body, html {
-    background-color: rgb(201, 87, 87);
+    background-image: url("pexels-miriam-espacio-110854.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     font-family: Sans-Serif;
     line-height: 18px;
-    height: 100%;
-    width: 100%;
 }
+
 
 .card {
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
