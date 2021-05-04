@@ -1,39 +1,47 @@
-
-<h1>Welcome to RubySpace</h1>
-<h4>Below is a feed of all user's posts, Try making your own post!</h4><br>
-<div class="container">
-    
-
-
-    <%= render "form" %>
+<% if user_signed_in? %>
+    <h1>Welcome to RubySpace</h1>
+    <h4>Below is a feed of all user's posts, Try making your own post!</h4><br>
+    <div class="container">
+        
 
 
-    <div>
-        <ul><% @posts.each do |f| %>
-            <div class="card-deck">
-                <div class="card align-items-center" style="width: 20rem;">
-                    <div class="card-block">
-                        <%= f.image_url %>
-                        <%= f.views %>
-                        <% if f.image.attached? %>
-                            <%= link_to post_path(f) do %>
-                                <%= image_tag f.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+        <%= render "form" %>
+
+
+        <div>
+            <ul><% @posts.each do |f| %>
+                <div class="card-deck">
+                    <div class="card align-items-center" style="width: 20rem;">
+                        <div class="card-block">
+                            <%= f.image_url %>
+                            <%= f.views %>
+                            <% if f.image.attached? %>
+                                <%= link_to post_path(f) do %>
+                                    <%= image_tag f.image, style:'width:500px; height:500px; display: block; border-radius: 20px;' %>
+                                <% end %>
                             <% end %>
-                        <% end %>
-                        <p class="card-text">
-                        <strong><h3><%= f.content %></h3></strong>
-                        </p>
-                        <div class="card-footer">
-                            <%= index_date_format(f) %>
-                            <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(f) %></a>
-                            <% if user_signed_in? && f.user == current_user %>
-                            <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete", data: { confirm: 'Are you sure?' } %></a>
-                            <% end %>
+                            <p class="card-text">
+                            <strong><h3><%= f.content %></h3></strong>
+                            </p>
+                            <div class="card-footer">
+                                <%= index_date_format(f) %>
+                                <a class="nav-item nav-link btn btn-primary"<%= link_to "View", post_path(f) %></a>
+                                <% if user_signed_in? && f.user == current_user %>
+                                <a class="nav-item nav-link btn btn-danger"<%= link_to "Delete", post_path(f), :method => "delete", data: { confirm: 'Are you sure?' } %></a>
+                                <% end %>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <% end %>
-        </ul>
+            <% end %>
+            </ul>
+        </div>
     </div>
-</div>
+<% else %>
+    <div class="container">
+    <h1>Welcome to RubySpace</h1></br>
+
+    <h2>The place where your social media is combined all into one place!<br><br> Please signup or Log in at the top</h2>
+
+    </div>
+<% end %>
