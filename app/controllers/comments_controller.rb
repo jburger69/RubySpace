@@ -1,11 +1,13 @@
 class CommentsController < ApplicationController
 
     def new
+        @post = Post.find(params[:post_id])
+        @comment = @post.comments.new
         
     end
 
     def create
-        @post = current_user.posts.find(params[:post_id])
+        @post = Post.find(params[:post_id])
         @comment = @post.comments.new(comment_params)
         if @comment.valid?
             @comment.save
@@ -16,7 +18,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @post = current_user.posts.find(params[:post_id])
+        @post = Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
         @comment.destroy
         redirect_to post_path(@post)
