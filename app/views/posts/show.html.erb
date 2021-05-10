@@ -9,7 +9,7 @@
           </p>
         <% end %>
         <h2><%= @post.content %></h2><br>
-        <%= render 'comments/form', :comment => @comment %>
+        <a class="nav-item nav-link btn btn-primary"<%= link_to "Add a new comment", new_post_comment_path(@post) %></a>
         <ul>
             <h3><span class="tag is-rounded"><%= @post.comments.count %> comments</span></h3><br>
             <%= render @comments %>
