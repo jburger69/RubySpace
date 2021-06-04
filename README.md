@@ -18,6 +18,3 @@ Bug reports and pull requests are welcome at [https://github.com/jburger69/RubyS
 
 # License
 Distributed under the [MIT License](https://opensource.org/licenses/MIT)
-
-# Link to FrontEnd
-(https://github.com/jburger69/GameReview-frontend)
