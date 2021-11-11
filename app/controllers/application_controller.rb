@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
         end 
     end
 
+    def most_follows
+        @user = current_user
+        @users = User.all
+        @user_most_follows = @users.sort_by {|user| user.followers.count}.last
+    end
+
 
     protected
 
