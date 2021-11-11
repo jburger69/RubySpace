@@ -20,6 +20,7 @@
                 <a class="nav-item nav-link" <%= link_to "Users", users_path, method: :get %></a>
                 <a class="nav-item nav-link" <%= link_to "Posts", posts_path, method: :get %></a>
                 <a class="nav-item nav-link" <%= link_to "Recent Posts", recent_path, method: :get %></a>
+                <a class="nav-item nav-link" <%= link_to "Most Follows", most_follows_path, method: :get %></a>
                 <a class="nav-item nav-link" <%= link_to "logout", destroy_user_session_path, method: :delete  %></a>
                 <%= form_tag(search_page_path, :method => "get",   
                   class: 'navbar-form navbar-left') do %>  

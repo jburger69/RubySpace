@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/search' => 'application#search', :as => 'search_page'
+  get '/most_follows' => 'application#most_follows', :as => 'most_follows'
   get '/most_recent', to: 'posts#most_recent', as: 'recent'
   get '/users/:id/followers' => 'follows#followers'
   get '/users/:id/following' => 'follows#followees'
