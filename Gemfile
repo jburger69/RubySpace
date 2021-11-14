@@ -32,6 +32,7 @@ gem "dotenv-rails"
 gem 'pry'
 gem 'world-flags', github: 'kristianmandrup/world-flags', branch: 'master'
 gem 'bootstrap-sass'
+gem "google-cloud-storage", "~> 1.8", require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
