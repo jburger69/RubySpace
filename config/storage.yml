@@ -16,13 +16,13 @@ test:
 
 google:
   service: GCS
-  project: images
+  project: Images
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
   bucket: images_uploads
 
 google_dev:
   service: GCS
-  project: images
+  project: Images
   credentials: <%= Rails.root.join("config/secrets/images.json") %>
   bucket: images_uploads
 
