@@ -16,15 +16,31 @@ test:
 
 google:
   service: GCS
-  project: Images
-  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
-  bucket: images_uploads
+  credentials:
+    type: "service_account"
+    project_id: <%= ENV['GCS_PROJECT_ID'] %>
+    private_key_id: <%= ENV['GCS_PRIVATE_KEY_ID'] %>
+    private_key: <%= ENV['GCS_PRIVATE_KEY'] %>
+    client_email: <%= ENV['GCS_CLIENT_EMAIL'] %>
+    client_id: <%= ENV['GCS_CLIENT_ID'] %>
+    auth_uri: "https://accounts.google.com/o/oauth2/auth"
+    token_uri: "https://accounts.google.com/o/oauth2/token"
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+    client_x509_cert_url: <%= ENV['GCS_CLIENT_X509_CERT_URL'] %>
+  project: <%= ENV['GCS_PROJECT'] %>
+  bucket: <%= ENV['GCS_BUCKET'] %>
 
-google_dev:
-  service: GCS
-  project: Images
-  credentials: <%= Rails.root.join("config/secrets/images.json") %>
-  bucket: images_uploads
+# google:
+#   service: GCS
+#   project: Images
+#   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
+#   bucket: images_uploads
+
+# google_dev:
+#   service: GCS
+#   project: Images
+#   credentials: <%= Rails.root.join("config/secrets/images.json") %>
+#   bucket: images_uploads
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
