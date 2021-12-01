@@ -4,6 +4,11 @@
 # RubySpace
 RubySpace is a application that users can signup and make whatever posts they would like. Users also have the ablity to have followers and follow other people. Its like a facebook and instagram all in one place.
 
+
+
+<img width="1407" alt="Screen Shot 2021-11-30 at 11 41 22 PM" src="https://user-images.githubusercontent.com/71084231/144173867-86958779-4b29-4e70-a9da-4264181a1bc1.png">
+>
+
 # Installation
 To use this app, clone the [repo](https://github.com/jburger69/RubySpace), then execute:
 `$ bundle install`
